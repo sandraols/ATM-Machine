@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ATM Machine</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courgette&family=Red+Hat+Text:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="login-page" class="main-container visible">
+      <div class="content-container">
+        <div class="titles">
+          <h1 class="title text">ATM</h1>
+          <h2 class="subtitle text">Machine</h2>
+          <div class="line"></div>
+        </div>
+        <p class="explanation-paragraph text">
+          Log in to your account using your name and pin code
+        </p>
+        <div>
+          <form class="form" onsubmit="loginUser">
+            <div class="form-section">
+              <label class="label text" for="name">Name:</label>
+              <input
+                class="input"
+                id="name"
+                type="text"
+                name="name"
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-section">
+              <label class="label text" for="pin">Pin code:</label>
+              <input
+                class="input"
+                id="pin"
+                type="text"
+                name="pin"
+                pattern="[0-9]{4}"
+                maxlength="4"
+                autocomplete="off"
+              />
+            </div>
+            <input
+              class="login-btn"
+              id="login-btn"
+              type="submit"
+              value="Log in"
+            />
+          </form>
+        </div>
+      </div>
+      <div id="modal" class="modal-container">
+        <!-- Modal content will go here -->
+      </div>
+    </div>
+    <div id="logged-in-page" class="disabled">
+      <h1 class="welcome-title">Welcome</h1>
+      <div id="btn">balance</div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
