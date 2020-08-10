@@ -8,10 +8,6 @@
 
 } */
 
-.disabled {
-    display: none;
-}
-
 .text {
     color: #FDB1FF;
     font-family: 'Red Hat Text', sans-serif;
@@ -218,3 +214,11 @@
 /* LOGGED IN PAGE */
 /* ---------------- */
 
+.logged-in-page {
+    background-color: blue;
+    height: 100vh;
+}
+
+.disabled {
+    display: none;
+}
