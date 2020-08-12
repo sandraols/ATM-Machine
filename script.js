@@ -75,7 +75,7 @@ const loginUser = (name, pin) => {
   } else {
     modal.innerHTML += `<div class="modal-content">
       <p class="modal-paragraph">User not found</p>
-      <button onclick="removeModalAndPin()" class="modal-btn">Ok</button>
+      <button onclick="closeModal()" class="modal-btn">Ok</button>
     </div>`;
   }
 };
@@ -83,6 +83,8 @@ const loginUser = (name, pin) => {
 const clearInputFields = () => {
   name.value = "";
   pin.value = "";
+  withdrawInput.value = "";
+  depositInput.value = "";
 };
 const enableLoginBtn = () => {
   loginBtn.disabled = false;
@@ -129,7 +131,7 @@ const withdrawMoney = amount => {
   </div>`;
     depositBtn.disabled = true;
     depositInput.disabled = true;
-    withdrawInput.value = "";
+    clearInputFields();
     return;
   } else if (amount % 100 !== 0) {
     loggedInModal.innerHTML += `<div class="modal-content">
@@ -138,7 +140,7 @@ const withdrawMoney = amount => {
   </div>`;
     depositBtn.disabled = true;
     depositInput.disabled = true;
-    withdrawInput.value = "";
+    clearInputFields();
     return;
   } else {
     loggedInModal.innerHTML += `<div class="modal-content withdraw-modal">
@@ -147,7 +149,7 @@ const withdrawMoney = amount => {
     <button onclick="removeModal()" class="modal-btn">Ok</button>
   </div>`;
     loggedInUser.balance -= amount;
-    withdrawInput.value = "";
+    clearInputFields();
     depositBtn.disabled = true;
     depositInput.disabled = true;
   }
@@ -168,11 +170,11 @@ const depositMoney = amount => {
   } else {
     loggedInModal.innerHTML += `<div class="modal-content deposit-modal">
         <p class="subtitle text">Money in the bank!<p>
-        <p class="modal-paragraph">Amount of ${amount}:- inserted successfully.</p>
+        <p class="modal-paragraph">Amount of ${amount}:- deposited successfully.</p>
         <button onclick="removeModal()" class="modal-btn">Ok</button>
         </div>`;
     loggedInUser.balance += parseInt(amount);
-    depositInput.value = "";
+    clearInputFields();
     depositBtn.disabled = true;
     depositInput.disabled = true;
   }
@@ -207,3 +209,10 @@ const removeModal = () => {
 logOutBtn.addEventListener("click", function() {
   location.reload(false);
 });
+
+/*
+to do:
+- Update balance in local storage
+- Show pin as * in pin input
+- Show amount with spaces. For example 10 000 instead of 10000
+*/
