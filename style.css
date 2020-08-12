@@ -14,12 +14,34 @@
     font-weight: 700;
 }
 
+.btn {
+    background-color: #FDB1FF;
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: .2s;
+    font-family: 'Red Hat Text', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #20009E;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: rgb(249, 81, 255);
+}
+
+.btn:focus {
+    outline: none;
+}
+
 /* ---------------- */
 /* LOGIN PAGE */
 /* ---------------- */
 
 .main-container {
-    /* background-color: #20009E; */
     background-color: rgb(2, 7, 82);
     height: 100vh;
     display: flex;
@@ -85,7 +107,7 @@
 /* FORM */
 /* ---------------- */
 
-.form {
+.login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,7 +116,7 @@
 
 /* ----- Labels & Inputs ----- */
 
-.form-section {
+.login-form-section {
     display: flex;
     flex-direction: column;
     margin-bottom: 28px;
@@ -125,29 +147,6 @@
 
 /* ----- Login Button ----- */
 
-.login-btn {
-    background-color: #FDB1FF;
-    width: 150px;
-    height: 40px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    transition: .2s;
-    font-family: 'Red Hat Text', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: #20009E;
-    text-transform: uppercase;
-}
-
-.login-btn:hover {
-    background-color: rgb(249, 81, 255);
-}
-
-.login-btn:focus {
-    outline: none;
-}
-
 .login-btn:disabled {
     background-color: rgba(252, 177, 255, 0.562);
     color: rgba(32, 0, 158, 0.521);
@@ -166,7 +165,7 @@
 .modal-content {
     padding: 20px;
     height: 25vh;
-    width: 50vw;
+    width: 40vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -215,8 +214,119 @@
 /* ---------------- */
 
 .logged-in-page {
-    background-color: blue;
+    background-color: rgb(2, 7, 82);
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* ----- Welcome text ----- */
+
+.welcome-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 30vh;
+}
+
+.welcome-title .title {
+    font-size: 42px;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* ----- Form ----- */
+
+.logged-in-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logged-in-form-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.logged-in-form-section:nth-of-type(1) {
+    margin-bottom: 30px;
+}
+
+.logged-in-form-section:nth-of-type(2) {
+    margin-bottom: 0px;
+}
+
+.input:disabled {
+    background-color: rgba(255, 255, 255, 0.671);
+}
+
+.withdraw-btn, .deposit-btn {
+    margin-top: 14px;
+    align-self: center;
+}
+
+.withdraw-btn:disabled, .deposit-btn:disabled {
+    background-color: #fcb1ffa8;
+}
+
+/* ----- Logged in modals ----- */
+
+.withdraw-modal {
+    height: 33vh;
+}
+
+.deposit-modal {
+    height: 36vh;
+}
+
+.modal-content .subtitle {
+    font-size: 56px;
+    padding-top: 10px;
+    color: white;
+}
+
+.modal-content .modal-paragraph {
+    margin-bottom: 5px;
+}
+
+/* ----- Logged in buttons ----- */
+
+.buttons {
+    position: absolute;
+    right: 60px;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.balance-btn {
+    height: 50px;
+    margin-bottom: 20px;
+    background-color: rgb(249, 81, 255);
+    color: white;
+    border: 2px solid #fdb1ff;
+    border-radius: 30px;
+}
+
+.balance-btn:hover {
+    background-color: #fdb1ff;
+    color: rgb(249, 81, 255);
+    border: 2px solid rgb(249, 81, 255);
+}
+
+.log-out-btn {
+    color: #fdb1ff;
+    border: 2px solid #fdb1ff;
+    background-color: rgb(2, 7, 82);
+}
+
+.log-out-btn:hover {
+    color: white;
 }
 
 .disabled {

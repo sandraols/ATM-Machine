@@ -23,8 +23,8 @@
           Log in to your account using your name and pin code
         </p>
         <div>
-          <form class="form" onsubmit="loginUser">
-            <div class="form-section">
+          <form class="login-form" onsubmit="loginUser">
+            <div class="login-form-section">
               <label class="label text" for="name">Name:</label>
               <input
                 class="input"
@@ -34,7 +34,7 @@
                 autocomplete="off"
               />
             </div>
-            <div class="form-section">
+            <div class="login-form-section">
               <label class="label text" for="pin">Pin code:</label>
               <input
                 class="input"
@@ -47,7 +47,7 @@
               />
             </div>
             <input
-              class="login-btn"
+              class="login-btn btn"
               id="login-btn"
               type="submit"
               value="Log in"
@@ -59,9 +59,30 @@
         <!-- Modal content will go here -->
       </div>
     </div>
-    <div class="logged-in-page" id="logged-in-page" class="disabled">
-      <h1 class="welcome-title">Welcome</h1>
-      <div id="btn">balance</div>
+
+    <div class="logged-in-page disabled" id="logged-in-page">
+      <div class="welcome-title text">
+        <!-- Text content will go here -->
+      </div>
+      <form class="logged-in-form">
+        <div class="logged-in-form-section">
+          <label class="label text" for="withdraw">Withdraw amount:</label>
+          <input class="input" id="withdraw" type="text" name="withdraw" autocomplete="off" />
+          <button class="withdraw-btn btn" id="withdraw-btn">Withdraw</button>
+        </div>
+        <div class="logged-in-form-section">
+          <label class="label text" for="deposit">Deposit amount:</label>
+          <input class="input" id="deposit" type="text" name="deposit" autocomplete="off" />
+          <button class="deposit-btn btn" id="deposit-btn">Deposit</button>
+        </div>
+      </form>
+      <div id="logged-in-modal" class="modal-container">
+        <!-- Modal content will go here -->
+      </div>
+      <div class="buttons">
+        <button class="balance-btn btn" id="balance-btn">Check balance</button>
+        <button class="log-out-btn btn" id="log-out-btn">Log out</button>
+      </div>
     </div>
     <script src="./script.js"></script>
   </body>

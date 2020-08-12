@@ -23,13 +23,13 @@ const users = [
 ];
 
 // Login page
-
 const loginBtn = document.querySelector("#login-btn");
 const name = document.querySelector("#name");
 const pin = document.querySelector("#pin");
 const modal = document.querySelector("#modal");
 const loginPage = document.querySelector("#login-page");
 const loggedInPage = document.querySelector("#logged-in-page");
+let loggedInUser;
 
 loginBtn.addEventListener("click", function(event) {
   event.preventDefault();
@@ -66,10 +66,11 @@ const loginUser = (name, pin) => {
         </div>`;
       }
     } else {
-      console.log("logged in");
-      loginPage.classList.add('disabled');
-      loggedInPage.classList.remove('disabled');
+      loginPage.classList.add("disabled");
+      loggedInPage.classList.remove("disabled");
       loggedInUser = user;
+      welcomeTitle.innerHTML += `<h1 class="subtitle text">Welcome!<h1>
+        <h2 class="title text">${loggedInUser.name}<h2>`;
     }
   } else {
     modal.innerHTML += `<div class="modal-content">
@@ -79,13 +80,12 @@ const loginUser = (name, pin) => {
   }
 };
 
-
 const clearInputFields = () => {
   name.value = "";
   pin.value = "";
 };
-  const enableLoginBtn = () => {
-    loginBtn.disabled = false;
+const enableLoginBtn = () => {
+  loginBtn.disabled = false;
 };
 const closeModal = () => {
   modal.innerHTML = "";
@@ -93,18 +93,117 @@ const closeModal = () => {
   enableLoginBtn();
 };
 const removeModalAndPin = () => {
-    modal.innerHTML = "";
-    pin.value = "";
-}
+  modal.innerHTML = "";
+  pin.value = "";
+};
 
-// When user is logged in
+// Logged in page
+const welcomeTitle = document.querySelector(".welcome-title");
+const balanceBtn = document.querySelector("#balance-btn");
+const loggedInModal = document.querySelector("#logged-in-modal");
+const withdrawInput = document.querySelector("#withdraw");
+const withdrawBtn = document.querySelector("#withdraw-btn");
+const depositInput = document.querySelector("#deposit");
+const depositBtn = document.querySelector("#deposit-btn");
+const logOutBtn = document.querySelector("#log-out-btn");
 
-let loggedInUser;
-balanceBtn = document.querySelector("#btn");
-balanceBtn.addEventListener("click", function() {
+//withdraw
+withdrawBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  withdrawMoney(withdrawInput.value);
+});
+
+const withdrawMoney = amount => {
+  if (amount == "") {
+    loggedInModal.innerHTML += `<div class="modal-content insert-modal">
+    <p class="modal-paragraph">No amount declared.</p>
+    <button onclick="removeModal()" class="modal-btn">Ok</button>
+  </div>`;
+    depositBtn.disabled = true;
+    depositInput.disabled = true;
+    return;
+  } else if (amount > loggedInUser.balance) {
+    loggedInModal.innerHTML += `<div class="modal-content">
+    <p class="modal-paragraph">Sorry.<br>Insufficient funds.</p>
+    <button onclick="removeModal()" class="modal-btn">Ok</button>
+  </div>`;
+    depositBtn.disabled = true;
+    depositInput.disabled = true;
+    withdrawInput.value = "";
+    return;
+  } else if (amount % 100 !== 0) {
+    loggedInModal.innerHTML += `<div class="modal-content">
+    <p class="modal-paragraph">Invalid amount.</p>
+    <button onclick="removeModal()" class="modal-btn">Ok</button>
+  </div>`;
+    depositBtn.disabled = true;
+    depositInput.disabled = true;
+    withdrawInput.value = "";
+    return;
+  } else {
+    loggedInModal.innerHTML += `<div class="modal-content withdraw-modal">
+    <p class="subtitle text">Successful!<p>
+    <p class="modal-paragraph">Please wait for your money.</p>
+    <button onclick="removeModal()" class="modal-btn">Ok</button>
+  </div>`;
+    loggedInUser.balance -= amount;
+    withdrawInput.value = "";
+    depositBtn.disabled = true;
+    depositInput.disabled = true;
+  }
+};
+
+//deposit
+depositBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  depositMoney(depositInput.value);
+});
+
+const depositMoney = amount => {
+  if (amount == "") {
+    loggedInModal.innerHTML += `<div class="modal-content deposit-modal">
+    <p class="modal-paragraph">No amount declared.</p>
+    <button onclick="removeModal()" class="modal-btn">Ok</button>
+  </div>`;
+  } else {
+    loggedInModal.innerHTML += `<div class="modal-content deposit-modal">
+        <p class="subtitle text">Money in the bank!<p>
+        <p class="modal-paragraph">Amount of ${amount}:- inserted successfully.</p>
+        <button onclick="removeModal()" class="modal-btn">Ok</button>
+        </div>`;
+    loggedInUser.balance += parseInt(amount);
+    depositInput.value = "";
+    depositBtn.disabled = true;
+    depositInput.disabled = true;
+  }
+};
+
+//balance
+balanceBtn.addEventListener("click", function(event) {
+  event.preventDefault();
   checkBalance();
 });
 
 const checkBalance = () => {
-  console.log(loggedInUser.balance);
+  loggedInModal.innerHTML += `<div class="modal-content">
+        <p class="modal-paragraph">You have ${loggedInUser.balance}:- on your account.</p>
+        <button onclick="removeModal()" class="modal-btn">Ok</button>
+      </div>`;
+  withdrawBtn.disabled = true;
+  withdrawInput.disabled = true;
+  depositBtn.disabled = true;
+  depositInput.disabled = true;
 };
+
+const removeModal = () => {
+  loggedInModal.innerHTML = "";
+  withdrawBtn.disabled = false;
+  withdrawInput.disabled = false;
+  depositBtn.disabled = false;
+  depositInput.disabled = false;
+};
+
+//log out
+logOutBtn.addEventListener("click", function() {
+  location.reload(false);
+});
