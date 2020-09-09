@@ -1,6 +1,7 @@
 /* ---------------- */
 /* GLOBAL STYLES */
 /* ---------------- */
+
 * {
   margin: 0;
   padding: 0;
@@ -31,6 +32,62 @@
 .btn:focus {
   outline: none;
 }
+
+/* ---------------- */
+/* MODAL */
+/* ---------------- */
+
+.modal-container {
+    display: flex;
+    justify-content: center;
+  }
+  .modal-content {
+    padding: 20px;
+    height: 25vh;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #fdb1ff;
+    box-shadow: 0px 0px 7px 2px #07093e;
+    border-radius: 4px;
+    position: absolute;
+    top: 40%;
+    z-index: 1;
+  }
+  .modal-paragraph {
+    font-family: "Red Hat Text", sans-serif;
+    color: #20009e;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+  }
+  .modal-content .subtitle {
+    font-size: 56px;
+    padding-top: 10px;
+    color: white;
+  }
+  .modal-btn {
+    width: 40%;
+    padding: 6px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-family: "Red Hat Text", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: rgb(249, 81, 255);
+    box-shadow: 1px 2px 0px #20009e;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .modal-btn:hover {
+    background-color: #20009e;
+  }
+  .modal-btn:focus {
+    outline: none;
+  }
 
 /* ---------------- */
 /* LOGIN PAGE */
@@ -127,6 +184,7 @@
   font-size: 16px;
   color: black;
   transition: 0.2s;
+  text-transform: capitalize;
 }
 .input:focus {
   outline: none;
@@ -142,54 +200,84 @@
 }
 
 /* ---------------- */
-/* MODAL */
+/* CREATE ACCOUNT */
 /* ---------------- */
 
-.modal-container {
-  display: flex;
-  justify-content: center;
+/* ----- Modal ----- */
+
+.create-account-modal {
+  height: 55vh;
 }
-.modal-content {
-  padding: 20px;
-  height: 25vh;
-  width: 40vw;
+.create-account-modal .modal-paragraph {
+  width: 70%;
+}
+#create-name:focus,
+#create-pin:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #20009e;
+}
+.createaccount-modal-content {
+  height: 384px;
+}
+
+/* ----- Form ----- */
+
+.create-account-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  background-color: #fdb1ff;
-  box-shadow: 0px 0px 7px 2px #07093e;
-  border-radius: 4px;
-  position: absolute;
-  top: 40%;
-  z-index: 1;
+  margin-top: 20px;
 }
-.modal-paragraph {
-  font-family: "Red Hat Text", sans-serif;
+.create-account-form-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+}
+.create-account-label {
   color: #20009e;
-  font-weight: 700;
-  font-size: 16px;
-  text-align: center;
 }
-.modal-btn {
-  width: 40%;
-  padding: 6px;
-  border: none;
-  border-radius: 20px;
-  color: white;
-  font-family: "Red Hat Text", sans-serif;
-  font-weight: 700;
-  font-size: 16px;
+.create-account-btn {
+    width: 200px;
+    padding: 10px;
+    text-transform: uppercase;
+}
+.requirements {
+    display: none;
+}
+.input-validation {
+    margin-top: -16px;
+    margin-bottom: 12px;
+    font-style: italic;
+    color: red;
+    font-size: 14px;
+    display: initial;
+}
+
+
+/* ----- Create Account Button ----- */
+
+.create-btn {
+  height: 50px;
+  border-radius: 30px;
+  position: absolute;
+  right: 32px;
+  bottom: 32px;
+  border: 2px solid rgb(249, 81, 255);
+  background-color: #fdb1ff;
+  color: rgb(249, 81, 255);
+}
+.create-btn:hover {
   background-color: rgb(249, 81, 255);
-  box-shadow: 1px 2px 0px #20009e;
-  cursor: pointer;
-  transition: 0.2s;
+  color: white;
+  color: rgb(32, 0, 158);
+  border: 2px solid rgb(249, 81, 255);
 }
-.modal-btn:hover {
-  background-color: #20009e;
-}
-.modal-btn:focus {
-  outline: none;
+.create-btn:disabled {
+    border: 2px solid rgb(249, 81, 255);
+    background-color: #fdb1ff;
+    color: rgb(249, 81, 255);
+    opacity: .7;
+    cursor: default;
 }
 
 /* ---------------- */
@@ -243,7 +331,7 @@
 }
 .withdraw-btn,
 .deposit-btn {
-  margin-top: 14px;
+  margin-top: 18px;
   align-self: center;
 }
 .withdraw-btn:disabled,
@@ -257,12 +345,7 @@
   height: 33vh;
 }
 .deposit-modal {
-  height: 36vh;
-}
-.modal-content .subtitle {
-  font-size: 56px;
-  padding-top: 10px;
-  color: white;
+  height: 38vh;
 }
 .modal-content .modal-paragraph {
   margin-bottom: 5px;
@@ -301,4 +384,52 @@
 }
 .disabled {
   display: none;
+}
+
+@media only screen and (max-width: 650px) {
+    .create-btn {
+      position: unset;
+    }
+    .content-container {
+        height: 85vh;
+    }
+    .welcome-title {
+        height: 23vh;
+    }
+    .buttons {
+        position: unset;
+    }
+    .balance-btn {
+        margin-bottom: 10px;
+    }
+  }
+@media only screen and (max-width: 450px) {
+    .modal-content {
+        width: 80vw;
+    }
+}
+@media (device-height : 568px) 
+   and (device-width : 320px) 
+   and (-webkit-min-device-pixel-ratio: 2) {
+    .title,
+    .subtitle {
+        font-size: 55px;
+    } 
+    .content-container {
+        height: 94vh;
+    }
+    .modal-content {
+        height: 65vh;
+        top: 32%;
+        padding-top: 8px;
+    }
+    .create-account-modal .modal-paragraph {
+        width: 88%;
+    }
+    .createaccount-modal-content .subtitle {
+        font-size: 38px;
+    }
+    .withdraw-modal .subtitle {
+        font-size: 44px;
+    }
 }

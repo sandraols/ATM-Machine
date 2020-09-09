@@ -1,89 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ATM Machine</title>
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Courgette&family=Red+Hat+Text:wght@500;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Red+Hat+Text:wght@500;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
     <div id="login-page" class="main-container">
-      <div class="content-container">
-        <div class="titles">
-          <h1 class="title text">ATM</h1>
-          <h2 class="subtitle text">Machine</h2>
-          <div class="line"></div>
-        </div>
-        <p class="explanation-paragraph text">
-          Log in to your account using your name and pin code
-        </p>
-        <div>
-          <form class="login-form" onsubmit="loginUser">
-            <div class="login-form-section">
-              <label class="label text" for="name">Name:</label>
-              <input
-                class="input"
-                id="name"
-                type="text"
-                name="name"
-                autocomplete="off"
-              />
+        <div class="content-container">
+            <div class="titles">
+                <h1 class="title text">ATM</h1>
+                <h2 class="subtitle text">Machine</h2>
+                <div class="line"></div>
             </div>
-            <div class="login-form-section">
-              <label class="label text" for="pin">Pin code:</label>
-              <input
-                class="input"
-                id="pin"
-                type="text"
-                name="pin"
-                pattern="[0-9]{4}"
-                maxlength="4"
-                autocomplete="off"
-              />
-            </div>
-            <input
-              class="login-btn btn"
-              id="login-btn"
-              type="submit"
-              value="Log in"
-            />
-          </form>
+            <p class="explanation-paragraph text">
+                Log in to your account using your name and pin code
+            </p>
+                <form class="login-form" onsubmit="loginUser">
+                    <div class="login-form-section">
+                        <label class="label text" for="name">Name:</label>
+                        <input 
+                            class="input" 
+                            id="name" 
+                            type="text" 
+                            name="name" 
+                            autocomplete="off" 
+                            autofocus />
+                    </div>
+                    <div class="login-form-section">
+                        <label class="label text" for="pin">Pin code:</label>
+                        <input 
+                            class="input" 
+                            id="pin" 
+                            type="password" 
+                            name="pin" 
+                            onkeypress="return event.charCode >= 8 && event.charCode <= 57 && event.charCode !== 45"
+                            maxlength="4" 
+                            autocomplete="off" 
+                            required />
+                    </div>
+                    <input class="login-btn btn" id="login-btn" type="submit" value="Log in" />
+                </form>
+            <button class="create-btn btn" id="create-btn">Create account</button>
         </div>
-      </div>
-      <div id="modal" class="modal-container">
-        <!-- Modal content will go here -->
-      </div>
+        <div id="modal" class="modal-container">
+            <!-- Modal content will go here -->
+        </div>
+        <div id="warning-modal" class="modal-container">
+        </div>
     </div>
 
     <div class="logged-in-page disabled" id="logged-in-page">
-      <div class="welcome-title text">
-        <!-- Text content will go here -->
-      </div>
-      <form class="logged-in-form">
-        <div class="logged-in-form-section">
-          <label class="label text" for="withdraw">Withdraw amount:</label>
-          <input class="input" id="withdraw" type="text" name="withdraw" autocomplete="off" />
-          <button class="withdraw-btn btn" id="withdraw-btn">Withdraw</button>
+        <div class="welcome-title text">
+            <!-- Text content will go here -->
         </div>
-        <div class="logged-in-form-section">
-          <label class="label text" for="deposit">Deposit amount:</label>
-          <input class="input" id="deposit" type="text" name="deposit" autocomplete="off" />
-          <button class="deposit-btn btn" id="deposit-btn">Deposit</button>
+        <form class="logged-in-form">
+            <div class="logged-in-form-section">
+                <label class="label text" for="withdraw">Withdraw amount:</label>
+                <input 
+                    class="input" 
+                    id="withdraw" 
+                    type="text" 
+                    name="withdraw" 
+                    autocomplete="off" 
+                    onkeypress="return event.charCode >= 8 && event.charCode <= 57 && event.charCode !== 45"
+                />
+                <button class="withdraw-btn btn" id="withdraw-btn">Withdraw</button>
+            </div>
+            <div class="logged-in-form-section">
+                <label class="label text" for="deposit">Deposit amount:</label>
+                <input 
+                    class="input" 
+                    id="deposit" 
+                    type="text" 
+                    name="deposit" 
+                    autocomplete="off"
+                    onkeypress="isPositiveInteger(event)"
+                />
+                <button class="deposit-btn btn" id="deposit-btn">Deposit</button>
+            </div>
+        </form>
+        <div id="logged-in-modal" class="modal-container">
+            <!-- Modal content will go here -->
         </div>
-      </form>
-      <div id="logged-in-modal" class="modal-container">
-        <!-- Modal content will go here -->
-      </div>
-      <div class="buttons">
-        <button class="balance-btn btn" id="balance-btn">Check balance</button>
-        <button class="log-out-btn btn" id="log-out-btn">Log out</button>
-      </div>
+        <div class="buttons">
+            <button class="balance-btn btn" id="balance-btn">Check balance</button>
+            <button class="log-out-btn btn" id="log-out-btn">Log out</button>
+        </div>
     </div>
     <script src="./script.js"></script>
-  </body>
+</body>
+
 </html>
